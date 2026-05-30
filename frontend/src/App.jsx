@@ -25,8 +25,7 @@ export default function App() {
 
       setChat((prev) => [...prev, botMsg]);
     } catch (err) {
-      // 👇 AQUI VOCÊ VÊ O ERRO REAL
-      console.log("❌ ERRO HUB:", err.response?.data || err.message);
+      console.log("ERRO HUB:", err.response?.data || err.message);
 
       const errorMsg = {
         type: "bot",
