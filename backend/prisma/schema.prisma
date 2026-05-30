@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  senha     String
+  perfil    String
+  createdAt DateTime @default(now())
+}
+
+model Paciente {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  idade     Int?
+  observacao String?
+  createdAt DateTime @default(now())
+}
+
+model Cuidador {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  telefone  String
+  email     String @unique
+}
+
+model Medicamento {
+  id       Int    @id @default(autoincrement())
+  nome     String
+  dosagem  String
+}
+
+model Alerta {
+  id        Int      @id @default(autoincrement())
+  mensagem  String
+  intent    String?
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+}
+
+model HubMessage {
+  id        Int      @id @default(autoincrement())
+  input     String
+  response  String
+  intent    String
+  channel   String?
+  createdAt DateTime @default(now())
+}
